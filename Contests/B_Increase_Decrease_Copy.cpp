@@ -3,24 +3,24 @@ using namespace std;
 
 void inputAndOutput() 
 {
-    int size;
+    long long int size;
     cin >> size;
-    vector<int> a(size);
+    vector<long long int> a(size);
     for (int i = 0; i < size; i++) {
         cin >> a[i];
     }
-    vector<int> b(size + 1);
+    vector<long long int> b(size + 1);
     for (int i = 0; i < size + 1; i++) {
         cin >> b[i];
     }
 
-    int operations = 0;
+    long long int operations = 0;
     int checker=0;
     for (int i=0; i< size; i++)
     {
         operations+= abs(a[i]-b[i]);
 
-        if ((a[i]<=b[size])&&(b[size]<=b[i])||(a[i]>=b[size])&&(b[size]<=b[i]))
+        if ((a[i]<=b[size])&&(b[size]<=b[i])||(a[i]>=b[size])&&(b[size]>=b[i]))
         {
             checker=1;
         }
@@ -28,22 +28,27 @@ void inputAndOutput()
 
     if (checker==1) a.push_back(b[size]);
    else {
-        int difference = INT_MAX;
-        int value;
+        long long int difference = INT_MAX;
+        long long int value;
         for (int i = 0; i < size; i++) {
-            int curr_diff = abs(a[i] - b[size]);
+            int z;
+            if (abs(a[i]-b[size])>=abs(b[i]-b[size]))
+            {
+                z= b[i];
+            }
+            else z=a[i];
+            long long int curr_diff = abs(z - b[size]);
             if (curr_diff < difference) {
                 difference = curr_diff;
-                value = a[i];
-            } else if (curr_diff == difference && a[i] < value) {
-                value = a[i];
+                value = z;
+            } else if (curr_diff == difference && z < value) {
+                value = z;
             }
         }
         a.push_back(value);
         operations += difference;
-   }
-    
 
+   }
     cout << operations+1 << endl;
     return;
 }
