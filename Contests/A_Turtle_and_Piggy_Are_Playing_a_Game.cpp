@@ -1,20 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
  
-int maxLog (long long int n)
+int maxLog(long long int n)
 {
-    int ans= static_cast<int>(floor(log (n)/log(2)));
+    // This function calculates the largest integer 'k' such that 2^k is less than or equal to 'n'.
+    // It uses logarithm base 2 to find 'k'.
+    int ans = static_cast<int>(log2(n));
     return ans;
 }
  
 void inputAndOutput()
 {
-    long long int x=-1;
-    long long int y=-1;
-    cin>>x;
-    cin>>y;
-    int ans= maxLog (y);
-    cout<< ans <<endl;
+    long long int x, y;
+    cin >> x >> y;  // Read two long long integers from input
+    int ans = maxLog(y);  // Compute the maximum power of 2 that is less than or equal to y
+    cout << ans << endl;  // Output the result
 }
  
  
